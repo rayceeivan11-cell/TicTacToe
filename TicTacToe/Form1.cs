@@ -15,12 +15,9 @@ namespace TicTacToe
     {
         private const string PLAYER = "X";
         private const string CPU = "O";
-
         private int playerScore = 0;
         private int cpuScore = 0;
-
         private Button[] buttons;
-
         private int[][] winningCombinations = new int[][]
         {
             new int[] { 1, 2, 3 }, // Row 1
@@ -164,6 +161,9 @@ namespace TicTacToe
             }
         }
 
+
+
+
         private bool CheckWinner()
         {
             foreach (var combo in winningCombinations)
@@ -198,13 +198,13 @@ namespace TicTacToe
         private void HighlightWinningCombination(int[] combo)
         {
             foreach (var i in combo)
-                buttons[i - 1].BackColor = Color.HotPink;
+                buttons[i - 1].BackColor = Color.Green;
 
             Application.DoEvents();
             Thread.Sleep(2000);
 
             foreach (var i in combo)
-                buttons[i - 1].BackColor = Color.LightGreen;
+                buttons[i - 1].BackColor = Color.Black;
         }
 
         private void CountWin(string winner)
@@ -212,7 +212,7 @@ namespace TicTacToe
             if (winner == PLAYER) playerScore++;
             else if (winner == CPU) cpuScore++;
             lbl_PlayerScore.Text = playerScore.ToString();
-            lbl_Computer.Text = cpuScore.ToString();
+            lbl_ComputerScore.Text = cpuScore.ToString();
 
             if (playerScore == 3 || cpuScore == 3)
             {
@@ -221,12 +221,16 @@ namespace TicTacToe
                 playerScore = 0;
                 cpuScore = 0;
                 lbl_PlayerScore.Text = playerScore.ToString();
-                lbl_Computer.Text = cpuScore.ToString();
+                lbl_ComputerScore.Text = cpuScore.ToString();
                 Thread.Sleep(1000);
             }
 
             ClearGame();
         }
+
+
+
+
 
         private void ClearGame()
         {
